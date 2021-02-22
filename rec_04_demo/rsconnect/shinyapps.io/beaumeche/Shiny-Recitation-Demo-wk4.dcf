@@ -1,0 +1,13 @@
+name: Shiny-Recitation-Demo-wk4
+title: Shiny-Recitation-Demo-wk4
+username:
+account: beaumeche
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3677038
+bundleId: 4256389
+url: https://beaumeche.shinyapps.io/Shiny-Recitation-Demo-wk4/
+when: 1613995459.44563
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: poverty_map.csv
