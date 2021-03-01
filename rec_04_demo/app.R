@@ -14,6 +14,7 @@ library(tidyverse)
 library(primer.data)
 library(shinythemes)
 library(shiny)
+
 source(file = "clean_pov_map.R")
 
 # for plot opt. 2:
@@ -47,6 +48,15 @@ ui <- navbarPage(
                             width = 450,
                             height = 400)),
         
+        tabPanel("Other Map",
+                 titlePanel("Another way to bring in a Map"),
+                 plotOutput("map2")),
+        
+        tabPanel("Working Map",
+                 titlePanel("Yet Another way to bring in a Map"),
+                 img(src = "img01", align = "center", 
+                     height = "80%", width = "80%")),
+        
         tabPanel("Discussion",
                  titlePanel("Discussion Title"),
                  p("Show the iterations you walked through in model construction
@@ -57,26 +67,27 @@ ui <- navbarPage(
                  titlePanel("You can include tables too!"),
                  gt_output("table1")),
         
-        tabPanel("Other Map",
-                 titlePanel("Another way to bring in a Map"),
-                 plotOutput("map2")),
-        
         tabPanel("About", 
                  titlePanel("About"),
                  h3("Project Background and Motivations"),
                  p("Here you tell the story of your project, acknowledge sources,
-                   and leave GH link and whatever contact(s) you feel comfortable with.")))
-        )
+                   and leave GH link and whatever contact(s) you feel comfortable with."),
+                 uiOutput("link"))
+        
+    ))
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
+    
+    output$link <- renderUI({
+        tags$a(href="https://beaumeche.shinyapps.io/Shiny-Recitation-Demo-wk4/", "Here is the link to this repo")
+    })
+        
     output$line_plot <- renderPlot({
         
         ifelse(input$var_plot == "enrollment",
                z <- qscores$enrollment,
                z <- qscores$rating)
-        
-        # ifelse(input$var_plot == "enrollment",
         
             qscores %>% 
                 ggplot(aes(x = hours,
@@ -106,6 +117,7 @@ server <- function(input, output) {
     # })
     
     output$pov_plot2 <- renderPlot({
+        
         data1 %>%
             ggplot(aes(fill = pov_ratio)) +
             geom_sf() +
@@ -115,6 +127,10 @@ server <- function(input, output) {
                  caption = "Sources: ACS 2015, ASPE",
                  fill = "% HH") +
             theme_few()
+    
+    # for the 3rd map    
+    # ggsave("img01.png", plot = last_plot())
+        
     })
     
     output$table1 <- render_gt({
@@ -124,6 +140,8 @@ server <- function(input, output) {
     output$map2 <- renderPlot({
         map2
     })
+    
+    
     
 }
 
