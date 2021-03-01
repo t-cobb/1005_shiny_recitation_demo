@@ -22,8 +22,8 @@ source(file = "clean_pov_map.R")
 data1 <- read_rds("poverty_map.Rds")
 
 # Define UI for application that draws a histogram
-ui <- navbarPage(theme = shinytheme("flatly"),
-   mainPanel( 
+ui <- navbarPage(
+    
     tabsetPanel(
         tabPanel("Interactivity",
                  fluidPage(
@@ -35,12 +35,17 @@ ui <- navbarPage(theme = shinytheme("flatly"),
                                  "Choose a Response Category",
                                  choices = c("Enrollment" = "enrollment", 
                                    "Workload per Week" = "hours")
-                             )),
-                         plotOutput("line_plot")))),
+                             ),
+                             width = 300),
+                         plotOutput("line_plot",
+                                    width = 550,
+                                    height = 500)))),
         
         tabPanel("Map",
                  titlePanel("Map of % HH Below Poverty Line"),
-                 plotOutput("pov_plot2")),
+                 plotOutput("pov_plot2",
+                            width = 450,
+                            height = 400)),
         
         tabPanel("Discussion",
                  titlePanel("Discussion Title"),
@@ -52,21 +57,26 @@ ui <- navbarPage(theme = shinytheme("flatly"),
                  titlePanel("You can include tables too!"),
                  gt_output("table1")),
         
+        tabPanel("Other Map",
+                 titlePanel("Another way to bring in a Map"),
+                 plotOutput("map2")),
+        
         tabPanel("About", 
                  titlePanel("About"),
                  h3("Project Background and Motivations"),
                  p("Here you tell the story of your project, acknowledge sources,
                    and leave GH link and whatever contact(s) you feel comfortable with.")))
-        ))
+        )
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
     output$line_plot <- renderPlot({
-        # Generate type based on input$plot_type from ui
-            
+        
         ifelse(input$var_plot == "enrollment",
                z <- qscores$enrollment,
                z <- qscores$rating)
+        
+        # ifelse(input$var_plot == "enrollment",
         
             qscores %>% 
                 ggplot(aes(x = hours,
@@ -111,8 +121,8 @@ server <- function(input, output) {
         table
     })
     
-    output$image <- renderImage({
-
+    output$map2 <- renderPlot({
+        map2
     })
     
 }
