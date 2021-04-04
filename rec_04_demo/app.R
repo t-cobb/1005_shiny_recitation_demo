@@ -66,16 +66,28 @@ ui <- navbarPage(
         #this is just an image, and it needs to be in a www file, 
         # called in the img function. Loads faster
         
-        tabPanel("Working Map",
-                 titlePanel("Yet Another way to bring in a Map"),
-                 img(src = "img01", align = "center", 
+        tabPanel("Posterior Plot",
+                 titlePanel("This is where my posterior plot goes"),
+                 img(src = "img02.png", align = "center", 
                      height = "80%", width = "80%")),
         
-        tabPanel("Discussion",
+        tabPanel("Model",
                  titlePanel("Discussion Title"),
-                 p("Show the iterations you walked through in model construction
-                   and choosing your covariates, often this will look like tables
-                   and distribution plots.")),
+                 p(" This is my model from my IPUMS data. It's a 2 parameter model exploring language as a barrier to medical care.
+                 
+                 stan_glm
+ family:       gaussian [identity]
+ formula:      NOUSLYLANG ~ 1
+ observations: 100
+ predictors:   1
+------
+            Median MAD_SD
+(Intercept) 0.3    0.0   
+
+Auxiliary parameter(s):
+      Median MAD_SD
+sigma 0.4    0.0   
+.")),
         
         tabPanel("Table",
                  titlePanel("You can include tables too!"),
@@ -83,9 +95,9 @@ ui <- navbarPage(
         
         tabPanel("About", 
                  titlePanel("About"),
-                 h3("Project Background and Motivations"),
-                 p("Here you tell the story of your project, acknowledge sources,
-                   and leave GH link and whatever contact(s) you feel comfortable with."),
+                 h3("Project Update"),
+                 p("As you know from our recitation, I ran into a slew of bugs and couldn't find my way out of the weeds.
+                   I've revered to this repo for the milestone this week and started to play with data -- but much work remains."),
                  uiOutput("link"))
         
     ))
@@ -110,7 +122,7 @@ output$object <- renderPlot({
 })    
     
     output$link <- renderUI({
-        tags$a(href="https://beaumeche.shinyapps.io/Shiny-Recitation-Demo-wk4/", "Here is the link to this repo")
+        tags$a(href="https://github.com/t-cobb/1005_shiny_recitation_demo.git", "Here is the link to this repo")
     })
         
     output$line_plot <- renderPlot({
