@@ -24,7 +24,8 @@ costs <- costaccess_data %>%
          self_pay = EXPSELFPAY,
          total = CHGTOT) 
 
-# find the median for each year 
+# find the median for each year
+# Choosing median over mean because I'm wary of outliers throwing off our range
 
 median_costs <- costs %>%
   group_by(YEAR) %>%
@@ -35,6 +36,8 @@ median_costs <- costs %>%
   rename(total = `median(total)`,
          self_pay = `median(self_pay)`,
          direct_pay = `median(direct_pay)`) 
+
+# plot the medians. We need to stack a few to get them to appear on one plot
 
 median_plot <- median_costs %>%
   ggplot(aes(x = YEAR,
@@ -48,10 +51,49 @@ median_plot <- median_costs %>%
   geom_point(aes(x = YEAR,
                  y = self_pay)) +
   geom_line(aes(x = YEAR,
-                y = self_pay))
+                y = self_pay)) + 
+  labs(title = "Annual Cost of Medical Care in the US (median)",
+       subtitle = "Total cost, direct payments, and out-of-pocket all on the rise ",
+       x = "",
+       y = "Amount Paid in USD",
+       caption = "Source: IPUMS") +
+  theme_classic()
+  
+  
+  # geom_label(label = "Total Payment", color = "black", size = 2) 
+  
+  
+# This treatment yields the following error 
+  #Error: geom_text requires the following missing aesthetics: label
+  # geom_text() +
+  # annotate("text", 
+  #          label = "Total Payment", 
+  #          x = 2012, 
+  #          y = 7500, 
+  #          size = 8, 
+  #          colour = "black")
+  # 
+# this treatment just stacks them one on another, all on the top line 
+  # geom_label(label = "Total Payment", color = "black", size = 2) 
+  # geom_label(label = "Direct Payment", color = "blue", size = 2) +
+  # geom_label(label = "Self Payment", color = "red", size = 2) 
 
-# may need to label the line as we did in pset 6 because this will make our legend tough
+  
+# Another example 
+  # geom_text() +
+  #   annotate("text", label = "plot mpg vs. wt", x = 2, y = 15, size = 8, colour = "red")
+
+# geom_label(label = "Direct Payment", color = "blue", size = 2) 
+# geom_label(label = "Self Payment", color = "red", size = 2)
+
+# this is the reference from exam 2. as.date appears to specify the location. 
+# How do I do this if I don't have date on the x? 
+  
+# geom_label(x=as.Date("2020-05-18"), y = 0.05, 
+#            label = "Postcards Sent", color = "black", size = 2)
+
 # also can add colors, labs, and style this plot 
+  
 # find definitions about each so I know with certainty what's in each bucket 
 
 # question: 
@@ -136,5 +178,3 @@ access_binary <- access %>%
          noinsurance = case_when(noinsurance == 0 ~ NA_character_,
                                  noinsurance == 1 ~ "No",
                                  noinsurance == 2 ~ "Yes"))
-
-
