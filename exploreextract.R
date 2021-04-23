@@ -13,13 +13,9 @@ sleep_data <- read_ipums_micro(ddi)
 ddi <- read_ipums_ddi("raw_data/meps_00002.xml")
 costaccess_data <- read_ipums_micro(ddi)
 
-# isolate the cost tibble and rename the variables
+# rename the cost variables
 
 costs <- costaccess_data %>%
- select(YEAR, 
-        EXPTOT, 
-        EXPSELFPAY, 
-        CHGTOT) %>%
   rename(direct_pay = EXPTOT,
          self_pay = EXPSELFPAY,
          total = CHGTOT) 
@@ -35,7 +31,11 @@ median_costs <- costs %>%
             .groups = "drop") %>%
   rename(total = `median(total)`,
          self_pay = `median(self_pay)`,
-         direct_pay = `median(direct_pay)`) 
+         direct_pay = `median(direct_pay)`) %>%
+  select(YEAR,
+         direct_pay,
+         self_pay,
+         total) 
 
 # plot the medians. We need to stack a few to get them to appear on one plot
 
@@ -59,9 +59,7 @@ median_plot <- median_costs %>%
        caption = "Source: IPUMS") +
   theme_classic()
   
-  
   # geom_label(label = "Total Payment", color = "black", size = 2) 
-  
   
 # This treatment yields the following error 
   #Error: geom_text requires the following missing aesthetics: label
@@ -78,7 +76,6 @@ median_plot <- median_costs %>%
   # geom_label(label = "Direct Payment", color = "blue", size = 2) +
   # geom_label(label = "Self Payment", color = "red", size = 2) 
 
-  
 # Another example 
   # geom_text() +
   #   annotate("text", label = "plot mpg vs. wt", x = 2, y = 15, size = 8, colour = "red")
@@ -105,14 +102,14 @@ costsmall <- costs %>%
   filter(total > 0) %>%
   slice_sample(n = 10000)
 
-costmodel <- stan_glm(costsmall,
+fit_1 <- stan_glm(costsmall,
          formula = log(total) ~ self_pay + YEAR + self_pay*YEAR,
          family = gaussian,
          refresh = 0,
          seed = 288)
 
-
-# combining self_pay and access, what variables would we expect to have an interesting relationship.
+# combining self_pay and access, what variables would we expect to have an 
+# interesting relationship.
 
 # ~~~~~~~~~~~~~~~
 
@@ -121,7 +118,7 @@ costmodel <- stan_glm(costsmall,
 # codes: 0 = n/a, 1 = no, 2 = yes
 # we need to re-code to standard binary so our models are more interpretable 
 
-access <- costaccess_data %>%
+costs_clean <- costs %>%
   select(YEAR, 
          NOUSLYDKWHER, 
          NOUSLYDRMOV, 
@@ -131,7 +128,10 @@ access <- costaccess_data %>%
          NOUSLYNONEED, 
          NOUSLYOTH,
          NOUSLYJOB, 
-         NOUSLYNOINS) %>% 
+         NOUSLYNOINS,
+         total,
+         self_pay,
+         direct_pay) %>% 
   rename(where = NOUSLYDKWHER,
          doc_moved = NOUSLYDRMOV,
          far = NOUSLYFAR, 
@@ -144,8 +144,8 @@ access <- costaccess_data %>%
 
 # recode all of the binary variables to NA, 0, 1
 
-access_binary <- access %>%
-  mutate(where = case_when(where == 0 ~ NA_character_,
+costs_clean %>%
+    mutate(where = case_when(where == 0 ~ NA_character_,
                            where == 1 ~ "No",
                            where == 2 ~ "Yes"),
          doc_moved = case_when(doc_moved == 0 ~ NA_character_,
@@ -163,9 +163,6 @@ access_binary <- access %>%
          doc_moved = case_when(doc_moved == 0 ~ NA_character_,
                                doc_moved == 1 ~ "No",
                                doc_moved == 2 ~ "Yes"),
-         doc_moved = case_when(doc_moved == 0 ~ NA_character_,
-                               where == 1 ~ "No",
-                               where == 2 ~ "Yes"),
          noneed_doc = case_when(noneed_doc == 0 ~ NA_character_,
                                 noneed_doc == 1 ~ "No",
                                 noneed_doc == 2 ~ "Yes"),
@@ -178,3 +175,47 @@ access_binary <- access %>%
          noinsurance = case_when(noinsurance == 0 ~ NA_character_,
                                  noinsurance == 1 ~ "No",
                                  noinsurance == 2 ~ "Yes"))
+
+# experiment with some models to explore the interaction between access and cost
+
+x <- costs_clean %>%
+  filter(total > 0) %>%
+  slice_sample(n = 10000)
+
+fit_2 <- stan_glm(x,
+                  formula = log(total) ~ language + self_pay,
+                   refresh = 0,
+                   family = gaussian,
+                   seed = 254)
+
+# of the batch, this may be the most interesting
+fit_3 <- stan_glm(x,
+                 formula = log(total) ~ language + noinsurance + self_pay + self_pay*jobrelated,
+                 refresh = 0,
+                 family = gaussian,
+                 seed = 254)
+
+fit_4 <- stan_glm(x,
+                  formula = log(total) ~ self_pay + where + doc_moved + far + direct_pay*far,
+                  refresh = 0,
+                  family = gaussian,
+                  seed = 254)
+
+# could be intersting result in noinsurance coefficient? 
+
+fit_5 <- stan_glm(x,
+                  formula = self_pay ~ total + noinsurance + jobrelated + noneed_doc + other +
+                            total*jobrelated,
+                  refresh = 0,
+                  family = gaussian,
+                  seed = 254)
+
+# this spit out some crazy errors and seems way unreliable 
+
+fit_6 <- stan_glm(x,
+                  formula = self_pay ~ total + direct_pay + doc_moved +
+                  noinsurance*jobrelated,
+                  refresh = 0,
+                  family = gaussian,
+                  seed = 254)
+
