@@ -5,18 +5,21 @@ library(gt)
 library(janitor)
 library(rstanarm)
 
-# read in the data 
+# read in the ipums data 
 
 ddi <- read_ipums_ddi("raw_data/nhis_00001.xml")
 sleep_data <- read_ipums_micro(ddi)
 
 ddi <- read_ipums_ddi("raw_data/meps_00002.xml")
-cost_data <- read_ipums_micro(ddi)
+costaccess_data <- read_ipums_micro(ddi)
 
-# rename the columns 
+# isolate the cost tibble and rename the variables
 
-costs <- cost_data %>%
- select(YEAR, EXPTOT, EXPSELFPAY, CHGTOT) %>%
+costs <- costaccess_data %>%
+ select(YEAR, 
+        EXPTOT, 
+        EXPSELFPAY, 
+        CHGTOT) %>%
   rename(direct_pay = EXPTOT,
          self_pay = EXPSELFPAY,
          total = CHGTOT) 
@@ -24,36 +27,114 @@ costs <- cost_data %>%
 # find the median for each year 
 
 median_costs <- costs %>%
- group_by(YEAR) %>%
+  group_by(YEAR) %>%
   summarize(median(total),
             median(direct_pay),
-            median(self_pay)) %>%
-  rename(cost = `median(total)`,
-         self = `median(self_pay)`,
-         direct = `median(direct_pay)`)
-  
-# plot median costs over time 
+            median(self_pay),
+            .groups = "drop") %>%
+  rename(total = `median(total)`,
+         self_pay = `median(self_pay)`,
+         direct_pay = `median(direct_pay)`) 
 
-median_costs %>%
+median_plot <- median_costs %>%
   ggplot(aes(x = YEAR,
-             y = direct)) +
-  geom_line()
-  
+             y = total)) +
+  geom_point() +
+  geom_line() +
+  geom_point(aes(x = YEAR,
+                 y = direct_pay)) +
+  geom_line(aes(x = YEAR,
+                y = direct_pay)) +
+  geom_point(aes(x = YEAR,
+                 y = self_pay)) +
+  geom_line(aes(x = YEAR,
+                y = self_pay))
 
-  
-  
-  
-  ggplot(aes(x = YEAR, ))
+# may need to label the line as we did in pset 6 because this will make our legend tough
+# also can add colors, labs, and style this plot 
+# find definitions about each so I know with certainty what's in each bucket 
+
+# question: 
+# do people who cause more medical expenditures pay more or less out of pocket year over year?
+
+# if I log my full data I'll need to remove the zeros first, like we did here: 
+
+costsmall <- costs %>% 
+  filter(total > 0) %>%
+  slice_sample(n = 10000)
+
+costmodel <- stan_glm(costsmall,
+         formula = log(total) ~ self_pay + YEAR + self_pay*YEAR,
+         family = gaussian,
+         refresh = 0,
+         seed = 288)
 
 
+# combining self_pay and access, what variables would we expect to have an interesting relationship.
+
+# ~~~~~~~~~~~~~~~
+
+# isolate the access tibble, and rename the variables
+# all of these are reasons for "no usual source of care"
+# codes: 0 = n/a, 1 = no, 2 = yes
+# we need to re-code to standard binary so our models are more interpretable 
+
+access <- costaccess_data %>%
+  select(YEAR, 
+         NOUSLYDKWHER, 
+         NOUSLYDRMOV, 
+         NOUSLYFAR, 
+         NOUSLYLANG, 
+         NOUSLYNOLIKE,
+         NOUSLYNONEED, 
+         NOUSLYOTH,
+         NOUSLYJOB, 
+         NOUSLYNOINS) %>% 
+  rename(where = NOUSLYDKWHER,
+         doc_moved = NOUSLYDRMOV,
+         far = NOUSLYFAR, 
+         language = NOUSLYLANG, 
+         dislike_doc = NOUSLYNOLIKE,
+         noneed_doc = NOUSLYNONEED, 
+         other = NOUSLYOTH,
+         jobrelated = NOUSLYJOB, 
+         noinsurance = NOUSLYNOINS)
+
+# recode all of the binary variables to NA, 0, 1
+
+access_binary <- access %>%
+  mutate(where = case_when(where == 0 ~ NA_character_,
+                           where == 1 ~ "No",
+                           where == 2 ~ "Yes"),
+         doc_moved = case_when(doc_moved == 0 ~ NA_character_,
+                               doc_moved == 1 ~ "No",
+                               doc_moved == 2 ~ "Yes"),
+         far = case_when(far == 0 ~ NA_character_,
+                          far == 1 ~ "No",
+                          far == 2 ~ "Yes"),
+         language = case_when(language == 0 ~ NA_character_,
+                              language == 1 ~ "No",
+                              language == 2 ~ "Yes"),
+         dislike_doc = case_when(dislike_doc == 0 ~ NA_character_,
+                                 dislike_doc == 1 ~ "No",
+                                 dislike_doc == 2 ~ "Yes"),
+         doc_moved = case_when(doc_moved == 0 ~ NA_character_,
+                               doc_moved == 1 ~ "No",
+                               doc_moved == 2 ~ "Yes"),
+         doc_moved = case_when(doc_moved == 0 ~ NA_character_,
+                               where == 1 ~ "No",
+                               where == 2 ~ "Yes"),
+         noneed_doc = case_when(noneed_doc == 0 ~ NA_character_,
+                                noneed_doc == 1 ~ "No",
+                                noneed_doc == 2 ~ "Yes"),
+         other = case_when(other == 0 ~ NA_character_,
+                           other == 1 ~ "No",
+                           other == 2 ~ "Yes"),
+         jobrelated = case_when(jobrelated == 0 ~ NA_character_,
+                                jobrelated == 1 ~ "No",
+                                jobrelated == 2 ~ "Yes"),
+         noinsurance = case_when(noinsurance == 0 ~ NA_character_,
+                                 noinsurance == 1 ~ "No",
+                                 noinsurance == 2 ~ "Yes"))
 
 
-
-
-
-# to start, let's explore sleep and exercise. 
-# Does sleep improve with more exercise? 
-
-# data %>%
-#   select(YEAR, MOD10FWK, VIG10FWK, STRONGFWK, HRSLEEP, SLEEPFALL, SLEEPSTAY) %>%
-#   slice_sample(n = 10)
