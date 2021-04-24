@@ -37,7 +37,8 @@ median_costs <- costs %>%
          self_pay,
          total) 
 
-# plot the medians. We need to stack a few to get them to appear on one plot
+# Plot the medians. We need to stack a few to get them to appear on one plot.
+# clarify definitions about each so I know with certainty what's in each bucket 
 
 median_plot <- median_costs %>%
   ggplot(aes(x = YEAR,
@@ -52,46 +53,21 @@ median_plot <- median_costs %>%
                  y = self_pay)) +
   geom_line(aes(x = YEAR,
                 y = self_pay)) + 
+ annotate("text", x = 2016, y = 1200, label = "Total Cost") +
+ annotate("text", x = 2014, y = 450, label = "Direct Payments") +
+ annotate("text", x = 2011, y = 150, label = "Out of Pocket") +
   labs(title = "Annual Cost of Medical Care in the US (median)",
-       subtitle = "Total cost, direct payments, and out-of-pocket all on the rise ",
+       subtitle = "2016 saw an uptick in all categories",
        x = "",
        y = "Amount Paid in USD",
        caption = "Source: IPUMS") +
   theme_classic()
   
-  # geom_label(label = "Total Payment", color = "black", size = 2) 
   
-# This treatment yields the following error 
-  #Error: geom_text requires the following missing aesthetics: label
-  # geom_text() +
-  # annotate("text", 
-  #          label = "Total Payment", 
-  #          x = 2012, 
-  #          y = 7500, 
-  #          size = 8, 
-  #          colour = "black")
-  # 
 # this treatment just stacks them one on another, all on the top line 
   # geom_label(label = "Total Payment", color = "black", size = 2) 
   # geom_label(label = "Direct Payment", color = "blue", size = 2) +
   # geom_label(label = "Self Payment", color = "red", size = 2) 
-
-# Another example 
-  # geom_text() +
-  #   annotate("text", label = "plot mpg vs. wt", x = 2, y = 15, size = 8, colour = "red")
-
-# geom_label(label = "Direct Payment", color = "blue", size = 2) 
-# geom_label(label = "Self Payment", color = "red", size = 2)
-
-# this is the reference from exam 2. as.date appears to specify the location. 
-# How do I do this if I don't have date on the x? 
-  
-# geom_label(x=as.Date("2020-05-18"), y = 0.05, 
-#            label = "Postcards Sent", color = "black", size = 2)
-
-# also can add colors, labs, and style this plot 
-  
-# find definitions about each so I know with certainty what's in each bucket 
 
 # question: 
 # do people who cause more medical expenditures pay more or less out of pocket year over year?
@@ -107,9 +83,6 @@ fit_1 <- stan_glm(costsmall,
          family = gaussian,
          refresh = 0,
          seed = 288)
-
-# combining self_pay and access, what variables would we expect to have an 
-# interesting relationship.
 
 # ~~~~~~~~~~~~~~~
 
@@ -178,6 +151,9 @@ costs_clean %>%
 
 # experiment with some models to explore the interaction between access and cost
 
+# combining self_pay and access, what variables would we expect to have an 
+# interesting relationship?
+
 x <- costs_clean %>%
   filter(total > 0) %>%
   slice_sample(n = 10000)
@@ -210,7 +186,7 @@ fit_5 <- stan_glm(x,
                   family = gaussian,
                   seed = 254)
 
-# this spit out some crazy errors and seems way unreliable 
+# this spit out some crazy errors and seems unreliable 
 
 fit_6 <- stan_glm(x,
                   formula = self_pay ~ total + direct_pay + doc_moved +
@@ -219,3 +195,8 @@ fit_6 <- stan_glm(x,
                   family = gaussian,
                   seed = 254)
 
+fit_7 <- stan_glm(x,
+                  formula = log(total) ~ self_pay + YEAR + self_pay*noinsurance,
+                  family = gaussian,
+                  refresh = 0,
+                  seed = 288)
