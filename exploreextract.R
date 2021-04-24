@@ -116,47 +116,52 @@ costs_clean <- costs %>%
          noinsurance = NOUSLYNOINS)
 
 # recode all of the binary variables to NA, 0, 1
+# Because there are some coded as "unknown" I've decided to recode these as NA 
 
-costs_clean %>%
-    mutate(where = case_when(where == 0 ~ NA_character_,
-                           where == 1 ~ "No",
-                           where == 2 ~ "Yes"),
-         doc_moved = case_when(doc_moved == 0 ~ NA_character_,
-                               doc_moved == 1 ~ "No",
-                               doc_moved == 2 ~ "Yes"),
-         far = case_when(far == 0 ~ NA_character_,
-                          far == 1 ~ "No",
-                          far == 2 ~ "Yes"),
-         language = case_when(language == 0 ~ NA_character_,
-                              language == 1 ~ "No",
-                              language == 2 ~ "Yes"),
-         dislike_doc = case_when(dislike_doc == 0 ~ NA_character_,
-                                 dislike_doc == 1 ~ "No",
-                                 dislike_doc == 2 ~ "Yes"),
-         doc_moved = case_when(doc_moved == 0 ~ NA_character_,
-                               doc_moved == 1 ~ "No",
-                               doc_moved == 2 ~ "Yes"),
-         noneed_doc = case_when(noneed_doc == 0 ~ NA_character_,
-                                noneed_doc == 1 ~ "No",
-                                noneed_doc == 2 ~ "Yes"),
-         other = case_when(other == 0 ~ NA_character_,
-                           other == 1 ~ "No",
-                           other == 2 ~ "Yes"),
-         jobrelated = case_when(jobrelated == 0 ~ NA_character_,
-                                jobrelated == 1 ~ "No",
-                                jobrelated == 2 ~ "Yes"),
-         noinsurance = case_when(noinsurance == 0 ~ NA_character_,
-                                 noinsurance == 1 ~ "No",
-                                 noinsurance == 2 ~ "Yes"))
+access_clean <- costs_clean %>%
+    mutate(where = case_when(where == 1 ~ "No",
+                           where == 2 ~ "Yes",
+                           TRUE ~ NA_character_),
+           doc_moved = case_when(doc_moved == 1 ~ "No",
+                               doc_moved == 2 ~ "Yes",
+                               TRUE ~ NA_character_),
+         far = case_when(far == 1 ~ "No",
+                          far == 2 ~ "Yes",
+                         TRUE ~ NA_character_),
+         language = case_when(language == 1 ~ "No",
+                              language == 2 ~ "Yes",
+                              TRUE ~ NA_character_),
+         dislike_doc = case_when(dislike_doc == 1 ~ "No",
+                                 dislike_doc == 2 ~ "Yes",
+                                 TRUE ~ NA_character_),
+         noneed_doc = case_when(noneed_doc == 1 ~ "No",
+                                noneed_doc == 2 ~ "Yes",
+                                TRUE ~ NA_character_),
+         other = case_when(other == 1 ~ "No",
+                           other == 2 ~ "Yes",
+                           TRUE ~ NA_character_),
+         jobrelated = case_when(jobrelated == 1 ~ "No",
+                                jobrelated == 2 ~ "Yes",
+                                TRUE ~ NA_character_),
+         noinsurance = case_when(noinsurance == 1 ~ "No",
+                                 noinsurance == 2 ~ "Yes",
+                                 TRUE ~ NA_character_))
 
 # experiment with some models to explore the interaction between access and cost
 
 # combining self_pay and access, what variables would we expect to have an 
 # interesting relationship?
 
-x <- costs_clean %>%
+# roughly if 2x the SD is = Median the model is significant
+
+# run with larger sets of data
+# run loocompare and select the models that most significantly predict total cost and self pay
+# run these models on the full data 
+# based on the access variables, what can we learn about potential health care costs and expenditures? 
+
+x <- access_clean %>%
   filter(total > 0) %>%
-  slice_sample(n = 10000)
+  slice_sample(n = 50000)
 
 fit_2 <- stan_glm(x,
                   formula = log(total) ~ language + self_pay,
@@ -164,7 +169,6 @@ fit_2 <- stan_glm(x,
                    family = gaussian,
                    seed = 254)
 
-# of the batch, this may be the most interesting
 fit_3 <- stan_glm(x,
                  formula = log(total) ~ language + noinsurance + self_pay + self_pay*jobrelated,
                  refresh = 0,
@@ -172,12 +176,13 @@ fit_3 <- stan_glm(x,
                  seed = 254)
 
 fit_4 <- stan_glm(x,
-                  formula = log(total) ~ self_pay + where + doc_moved + far + direct_pay*far,
+                  formula = log(total) ~ self_pay + where + doc_moved + far + direct_pay*doc_moved,
                   refresh = 0,
                   family = gaussian,
                   seed = 254)
 
-# could be intersting result in noinsurance coefficient? 
+# could be interesting result in noinsurance coefficient? 
+# in comparison with fit_2: how would all of these access variables impact total costs and out of pocket costs? 
 
 fit_5 <- stan_glm(x,
                   formula = self_pay ~ total + noinsurance + jobrelated + noneed_doc + other +
@@ -200,3 +205,8 @@ fit_7 <- stan_glm(x,
                   family = gaussian,
                   refresh = 0,
                   seed = 288)
+
+
+# Access posteriors: what is the probability of being impacted by various barriers to care?
+
+

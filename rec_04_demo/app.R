@@ -96,8 +96,9 @@ sigma 0.4    0.0
         tabPanel("About", 
                  titlePanel("About"),
                  h3("Project Update"),
-                 p("As you know from our recitation, I ran into a slew of bugs and couldn't find my way out of the weeds.
-                   I've revered to this repo for the milestone this week and started to play with data -- but much work remains."),
+                 p("My name is Trevor Cobb and I'm a product manager and user reseracher completing a Masters in Design Engineering at Harvard.
+                   I'm interested in ways to fix the broken US healthcare system. But any reasonable attempt a problem solving must begin with a thorough
+                   understanding of the challenges. This app explores barriers to care and longitudinal expenditure data in the US."),
                  uiOutput("link"))
         
     ))

@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ipums-ddi-xslt.xsl"?>
+<codeBook ID="ddi2-ab7a73d0-65a1-0139-f178-0242ac1d0004-meps_00002.dat-www.meps.ipums.org" version="2.5" xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ddi:codebook:2_5 http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd">
+  <docDscr>
+    <citation>
+      <titlStmt>
+        <titl>Codebook for an for an IPUMS Health Surveys: Medical Expenditure Panel Survey Data Extract</titl>
+        <subTitl>DDI 2.5 metadata describing the extract file  'meps_00002.dat'</subTitl>
+        <IDNo>ddi2-ab7a73d0-65a1-0139-f178-0242ac1d0004-meps_00002.dat-www.meps.ipums.org</IDNo>
+      </titlStmt>
+      <rspStmt>
+        <AuthEnty affiliation="University of Minnesota">Minnesota Population Center</AuthEnty>
+      </rspStmt>
+      <prodStmt>
+        <producer abbr="MPC" affiliation="University of Minnesota" role="Documentation">Minnesota Population Center</producer>
+        <prodDate date="2021-04-23">April 23, 2021</prodDate>
+        <prodPlac>Minnesota Population Center, 50 Willey Hall, 225 - 19th Avenue South, Minneapolis, MN 55455</prodPlac>
+      </prodStmt>
+      <distStmt>
+        <contact URI="http://pop.umn.edu" affiliation="University of Minnesota">Minnesota Population Center</contact>
+      </distStmt>
+    </citation>
+  </docDscr>
+  <stdyDscr>
+    <citation>
+      <titlStmt>
+        <titl>User Extract meps_00002.dat</titl>
+      </titlStmt>
+      <rspStmt>
+        <AuthEnty affiliation="University of Minnesota">Minnesota Population Center</AuthEnty>
+      </rspStmt>
+      <prodStmt>
+        <producer abbr="MPC" affiliation="University of Minnesota" role="Documentation">Minnesota Population Center</producer>
+        <prodDate date="2021-04-23">April 23, 2021</prodDate>
+        <prodPlac>Minnesota Population Center, 50 Willey Hall, 225 - 19th Avenue South, Minneapolis, MN 55455</prodPlac>
+      </prodStmt>
+      <distStmt>
+        <contact URI="http://pop.umn.edu" affiliation="University of Minnesota">Minnesota Population Center</contact>
+      </distStmt>
+      <serStmt>
+        <serName abbr="meps">IPUMS MEPS</serName>
+        <serInfo>DOI:10.18128/D071.V1.1</serInfo>
+      </serStmt>
+      <verStmt>
+        <version date="2021-04-23"/>
+      </verStmt>
+    </citation>
+    <stdyInfo>
+      <subject>
+        <topcClas vocab="IPUMS">Technical Variables -- PERSON</topcClas>
+        <topcClas vocab="IPUMS">Access to Care Variables -- PERSON</topcClas>
+        <topcClas vocab="IPUMS">Total Expenditures Variables -- PERSON</topcClas>
+      </subject>
+      <sumDscr ID="sdatref-15">
+        <timePrd date="2010" event="single">2010</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-16">
+        <timePrd date="2011" event="single">2011</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-17">
+        <timePrd date="2012" event="single">2012</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-18">
+        <timePrd date="2013" event="single">2013</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-19">
+        <timePrd date="2014" event="single">2014</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-20">
+        <timePrd date="2015" event="single">2015</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-21">
+        <timePrd date="2016" event="single">2016</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-22">
+        <timePrd date="2017" event="single">2017</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-23">
+        <timePrd date="2018" event="single">2018</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2010 MEPS
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2011 MEPS
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2012 MEPS
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2013 MEPS
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2014 MEPS
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2015 MEPS
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2016 MEPS
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2017 MEPS
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  2018 MEPS
+]]></notes>
+    </stdyInfo>
+    <dataAccs>
+      <useStmt>
+        <confDec required="yes"><![CDATA[The Public Health Service Act (Section 308 (d)) provides that the data collected by the National Center for Health Statistics (NCHS), Centers for Disease Control and Prevention (CDC), may be used only for the purpose of health statistical reporting and analysis. Any effort to determine the identity of any reported case is prohibited by this law. NCHS does all it can to assure that the identity of data subjects cannot be disclosed. All direct identifiers, as well as any characteristics that might lead to identification, are omitted from the data files. Any intentional identification or disclosure of a person or establishment violates the assurances of confidentiality given to the providers of the information. 
+
+Therefore, users will: 
+
+Use the data in these data files for statistical reporting and analysis only. 
+
+Make no use of the identity of any person or establishment discovered inadvertently and advise the Director, NCHS, of any such discovery (301-458-4500). 
+
+Not link these data files with individually identifiable data from other NCHS or non-NCHS data files. 
+
+By using these data, you signify your agreement to comply with the above-stated statutorily-based requirements. ]]></confDec>
+        <contact URI="http://www.meps.ipums.org/" affiliation="Minnesota Population Center">IPUMS Health Surveys: Medical Expenditure Panel Survey</contact>
+        <citReq><![CDATA[Publications and research reports based on the MEPS database must cite it appropriately.  The citation is as follows:
+
+Lynn A. Blewett, Julia A. Rivera Drew, Risa Griffin, Kari C.W. Williams, and Daniel Backman. IPUMS Health Surveys: Medical Expenditure Panel Survey, Version 1.0 [dataset]. Minneapolis: University of Minnesota, 2018. http://doi.org/10.18128/D071.V1.0
+
+Please see http://www.meps.ipums.org/meps/citation.shtml for precise formatting of the citation.]]></citReq>
+        <conditions><![CDATA[The Public Health Service Act (Section 308 (d)) provides that the data collected by the National Center for Health Statistics (NCHS), Centers for Disease Control and Prevention (CDC), may be used only for the purpose of health statistical reporting and analysis. Any effort to determine the identity of any reported case is prohibited by this law. NCHS does all it can to assure that the identity of data subjects cannot be disclosed. All direct identifiers, as well as any characteristics that might lead to identification, are omitted from the data files. Any intentional identification or disclosure of a person or establishment violates the assurances of confidentiality given to the providers of the information. 
+
+Therefore, users must: 
+
+Use the data in these data files for statistical reporting and analysis only. 
+
+Make no use of the identity of any person or establishment discovered inadvertently and advise the Director, NCHS, of any such discovery (301-458-4500). 
+
+Not link these data files with individually identifiable data from other NCHS or non-NCHS data files. 
+
+By using these data, you signify your agreement to comply with the above-stated statutorily-based requirements. 
+
+Furthermore, users of MEPS data must agree to abide by the conditions of use. Users must agree to the following conditions:
+  
+  
+(1) Use the data in these data files for statistical reporting and analysis only 
+
+(2) Make no use of the identity of any person or establishment discovered inadvertently and advise the Director of NCHS of any such discovery (301-458-4500) 
+
+(3) Do not link these data with individually-identifiable data from NCHS or non-NCHS data files 
+
+(4) No fees may be charged for use or distribution of the data.  All persons are granted a limited license to use and distribute these data, but you may not charge a fee for the data if you distribute them to others. 
+
+(5) Cite the MEPS appropriately.  Publications and research reports based on the database must cite it appropriately.  Please see http://www.meps.ipums.org/meps/citation.shtml
+
+(6) MEPS cannot be used to study small geographic areas.  The smallest geographical areas identified in the MEPS are regions (groups of states) and a limited number of metropolitan areas.
+
+(7) This system provides individual-level data only.  The MEPS Data Extraction System will not produce tables. You will need to use a statistical software package, such as Stata, SAS, or SPSS, to analyze the downloaded data.  Alternatively, you may use the MEPS-SDA tabulator to produce tables online, without making a data extract.]]></conditions>
+        <disclaimer>The user of the data acknowledges that the original collector of the data, the authorized distributor of the data, and the relevant funding agency bear no responsibility for use of the data or for interpretations or inferences based upon such uses.</disclaimer>
+      </useStmt>
+    </dataAccs>
+    <notes><![CDATA[User-provided description:  Cost and barriers to care ]]></notes>
+  </stdyDscr>
+  <fileDscr ID="ExtractData">
+    <fileTxt>
+      <fileName>meps_00002.dat</fileName>
+      <fileCont>Microdata records</fileCont>
+      <fileStrc type="rectangular"/>
+      <fileType charset="ISO-8859-1">ISO-8859-1 data file</fileType>
+      <format>fixed length fields</format>
+      <filePlac>Minnesota Population Center, 50 Willey Hall, 225 - 19th Avenue South, Minneapolis, MN 55455</filePlac>
+    </fileTxt>
+  </fileDscr>
+  <dataDscr>
+    <var ID="YEAR" dcml="0" files="ExtractData" intrvl="contin" name="YEAR">
+      <location EndPos="4" StartPos="1" width="4"/>
+      <labl>Survey year</labl>
+      <txt><![CDATA[YEAR is a four-digit variable reporting the calendar year (e.g., 2003) the survey was conducted and the data were collected.  YEAR indicates the survey year on the person record.]]></txt>
+      <codInstr><![CDATA[This is a 4-digit numeric variable with 0 implied decimal places]]></codInstr>
+      <concept vocab="IPUMS">Technical Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="PERNUM" dcml="0" files="ExtractData" intrvl="contin" name="PERNUM">
+      <location EndPos="6" StartPos="5" width="2"/>
+      <labl>Person number within family (from reformatting)</labl>
+      <txt><![CDATA[PERNUM is an IPUMS MEPS-constructed variable that numbers all persons within each  household consecutively (starting with "1") in the order in which they appear in the original MEPS data.  PERNUM was created by IPUMS MEPS during the process of reformatting the original MEPS public use files.]]></txt>
+      <codInstr><![CDATA[CodesPERNUM is a 2-digit numeric variable.]]></codInstr>
+      <concept vocab="IPUMS">Technical Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="NOUSLYDKWHER" dcml="0" files="ExtractData" intrvl="discrete" name="NOUSLYDKWHER">
+      <location EndPos="7" StartPos="7" width="1"/>
+      <labl>Why no usual source of care: Doesn't know where to go</labl>
+      <txt><![CDATA[For current RU members in rounds 2 and 4 without a usual source of care (USUALPL) and who provided a main reason for not having a usual source of care (WHYNOUSLPL), that, in addition to the main reason they do not have a usual source of care (reported in WHYNOUSLPL), they also do not have a usual source of care because they do not know where to go for care. NOUSLYDKWHER is collected as part of the Access to Care supplement, which gathers information on usual source of care for all family members, characteristics of usual source of care health providers, and barriers family members have faced in obtaining needed health care.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>NIU</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>No</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Yes</labl>
+      </catgry>
+      <catgry>
+        <catValu>7</catValu>
+        <labl>Unknown-refused</labl>
+      </catgry>
+      <catgry>
+        <catValu>8</catValu>
+        <labl>Unknown-not ascertained</labl>
+      </catgry>
+      <catgry>
+        <catValu>9</catValu>
+        <labl>Unknown-don't know</labl>
+      </catgry>
+      <concept vocab="IPUMS">Access to Care Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="NOUSLYDRMOV" dcml="0" files="ExtractData" intrvl="discrete" name="NOUSLYDRMOV">
+      <location EndPos="8" StartPos="8" width="1"/>
+      <labl>Why no usual source of care: Previous doctor moved or is unavailable</labl>
+      <txt><![CDATA[For current RU members in rounds 2 and 4 without a usual source of care (USUALPL) and who provided a main reason for not having a usual source of care (WHYNOUSLPL), NOUSLYDRMOV indicates whether, in addition to the main reason they have no usual source of care (reported in WHYNOUSLPL), they also have no usual source of care because their doctor is no longer available or moved. NOUSLYDRMOV is collected as part of the Access to Care supplement, which gathers information on usual source of care for all family members, characteristics of usual source of care health providers, and barriers family members have faced in obtaining needed health care.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>NIU</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>No</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Yes</labl>
+      </catgry>
+      <catgry>
+        <catValu>7</catValu>
+        <labl>Unknown-refused</labl>
+      </catgry>
+      <catgry>
+        <catValu>8</catValu>
+        <labl>Unknown-not ascertained</labl>
+      </catgry>
+      <catgry>
+        <catValu>9</catValu>
+        <labl>Unknown-don't know</labl>
+      </catgry>
+      <concept vocab="IPUMS">Access to Care Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="NOUSLYFAR" dcml="0" files="ExtractData" intrvl="discrete" name="NOUSLYFAR">
+      <location EndPos="9" StartPos="9" width="1"/>
+      <labl>Why no usual source of care: Care too far away or inconvenient</labl>
+      <txt><![CDATA[For current RU members in rounds 2 and 4 without a usual source of care (USUALPL) and who provided a main reason for not having a usual source of care (WHYNOUSLPL), NOUSLYFAR indicates whether, in addition to the main reason they have no usual source of care (reported in WHYNOUSLPL), they also have no usual source of care because their usual source of medical care in this area is no longer available. NOUSLYFAR is collected as part of the Access to Care supplement, which gathers information on usual source of care for all family members, characteristics of usual source of care health providers, and barriers family members have faced in obtaining needed health care.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>NIU</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>No</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Yes</labl>
+      </catgry>
+      <catgry>
+        <catValu>7</catValu>
+        <labl>Unknown-refused</labl>
+      </catgry>
+      <catgry>
+        <catValu>8</catValu>
+        <labl>Unknown-not ascertained</labl>
+      </catgry>
+      <catgry>
+        <catValu>9</catValu>
+        <labl>Unknown-don't know</labl>
+      </catgry>
+      <concept vocab="IPUMS">Access to Care Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="NOUSLYLANG" dcml="0" files="ExtractData" intrvl="discrete" name="NOUSLYLANG">
+      <location EndPos="10" StartPos="10" width="1"/>
+      <labl>Why no usual source of care: Speak a different language</labl>
+      <txt><![CDATA[For current RU members in rounds 2 and 4 without a usual source of care (USUALPL) and who provided a main reason for not having a usual source of care (WHYNOUSLPL), NOUSLYLANG indicates whether, in addition to the main reason they have no usual source of care (reported in WHYNOUSLPL), they also have no usual source of care because they cannot find a source of care provider that speaks their language. NOUSLYLANG is collected as part of the Access to Care supplement, which gathers information on usual source of care for all family members, characteristics of usual source of care health providers, and barriers family members have faced in obtaining needed health care.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>NIU</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>No</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Yes</labl>
+      </catgry>
+      <catgry>
+        <catValu>7</catValu>
+        <labl>Unknown-refused</labl>
+      </catgry>
+      <catgry>
+        <catValu>8</catValu>
+        <labl>Unknown-not ascertained</labl>
+      </catgry>
+      <catgry>
+        <catValu>9</catValu>
+        <labl>Unknown-don't know</labl>
+      </catgry>
+      <concept vocab="IPUMS">Access to Care Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="NOUSLYNOLIKE" dcml="0" files="ExtractData" intrvl="discrete" name="NOUSLYNOLIKE">
+      <location EndPos="11" StartPos="11" width="1"/>
+      <labl>Why no usual source of care: Doesn't like doctors</labl>
+      <txt><![CDATA[For current RU members in rounds 2 and 4 without a usual source of care (USUALPL) and who provided a main reason for not having a usual source of care (WHYNOUSLPL), NOUSLYNOLIKE indicates whether, in addition to the main reason they have no usual source of care (reported in WHYNOUSLPL), they also have no usual source of care because they do not like doctors. NOUSLYNOLIKE is collected as part of the Access to Care supplement, which gathers information on usual source of care for all family members, characteristics of usual source of care health providers, and barriers family members have faced in obtaining needed health care.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>NIU</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>No</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Yes</labl>
+      </catgry>
+      <catgry>
+        <catValu>7</catValu>
+        <labl>Unknown-refused</labl>
+      </catgry>
+      <catgry>
+        <catValu>8</catValu>
+        <labl>Unknown-not ascertained</labl>
+      </catgry>
+      <catgry>
+        <catValu>9</catValu>
+        <labl>Unknown-don't know</labl>
+      </catgry>
+      <concept vocab="IPUMS">Access to Care Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="NOUSLYNONEED" dcml="0" files="ExtractData" intrvl="discrete" name="NOUSLYNONEED">
+      <location EndPos="12" StartPos="12" width="1"/>
+      <labl>Why no usual source of care: Doesn't need doctor</labl>
+      <txt><![CDATA[For current RU members in rounds 2 and 4 without a usual source of care (USUALPL)  who provided a main reason for not having a usual source of care (WHYNOUSLPL NOUSLYNONEED indicates whether, in addition to the main reason they have no usual source of care (reported in WHYNOUSLPL), they also have no usual source of care because they are seldom or never sick. NOUSLYNONEED is collected as part of the Access to Care supplement, which gathers information on usual source of care for all family members, characteristics of usual source of care health providers, and barriers family members have faced in obtaining needed health care.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>NIU</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>No</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Yes</labl>
+      </catgry>
+      <catgry>
+        <catValu>7</catValu>
+        <labl>Unknown-refused</labl>
+      </catgry>
+      <catgry>
+        <catValu>8</catValu>
+        <labl>Unknown-not ascertained</labl>
+      </catgry>
+      <catgry>
+        <catValu>9</catValu>
+        <labl>Unknown-don't know</labl>
+      </catgry>
+      <concept vocab="IPUMS">Access to Care Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="NOUSLYOTH" dcml="0" files="ExtractData" intrvl="discrete" name="NOUSLYOTH">
+      <location EndPos="13" StartPos="13" width="1"/>
+      <labl>Why no usual source of care: Other reason</labl>
+      <txt><![CDATA[For current RU members in rounds 2 and 4 without a usual source of care (USUALPL) and who provided a main reason for not having a usual source of care (WHYNOUSLPL), NOUSLYOTH indicates whether, in addition to the main reason they have no usual source of care (reported in WHYNOUSLPL), they also have no usual source of care because of some reason than the other reasons mentioned. 
+
+Other reasons mentioned include:
+&nbsp;
+Doesn't need a doctor or hasn't had problems
+
+(NOUSLYNONEED)
+
+Recently moved to area (NOUSLYMOVE)
+
+Doesn't know where to go
+
+(NOUSLYDKWHER)
+
+No care available or too far away or not convenient 
+
+(NOUSLYFAR)
+
+Speak a different language 
+
+(NOUSLYLANG)
+
+Uses different places for different needs (NOUSLYDIFF)
+
+Insurance change (NOUSLYINCHG)
+
+Treats self (NOUSLYSELF)
+
+Medical care is too expensive (NOUSLYEXP)
+
+Does not have health insurance (NOUSLYNOINS)
+
+Reason related to insurance (NOUSLYINRSN)
+
+Reason related to job (NOUSLYJOB)
+
+Looking for new doctor (NOUSLYDR)
+
+Previous doctor is not available or moved 
+
+(NOUSLYDRMOV)
+
+Reason related to health
+
+(NOUSLYHLTH)
+
+Doctor is self, friend, or family member
+
+(NOUSLYFRFAM)
+
+Receive care at work
+
+(NOUSLYWORK)
+
+Refuse to go to doctor 
+
+(NOUSLYREFDR)
+
+Reasons related to time and transportation 
+
+(NOUSLYTRANS)
+
+Uses hospital/ER/clinic
+
+(NOUSLYER)
+ NOUSLYOTH is collected as part of the Access to Care supplement, which gathers information on usual source of care for all family members, characteristics of usual source of care health providers, and barriers family members have faced in obtaining needed health care.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>NIU</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>No</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Yes</labl>
+      </catgry>
+      <catgry>
+        <catValu>7</catValu>
+        <labl>Unknown-refused</labl>
+      </catgry>
+      <catgry>
+        <catValu>8</catValu>
+        <labl>Unknown-not ascertained</labl>
+      </catgry>
+      <catgry>
+        <catValu>9</catValu>
+        <labl>Unknown-don't know</labl>
+      </catgry>
+      <concept vocab="IPUMS">Access to Care Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="NOUSLYJOB" dcml="0" files="ExtractData" intrvl="discrete" name="NOUSLYJOB">
+      <location EndPos="14" StartPos="14" width="1"/>
+      <labl>Why no usual source of care: Reason related to job</labl>
+      <txt><![CDATA[For current RU members in rounds 2 and 4 without a usual source of care (USUALPL) and who provided a main reason for not having a usual source of care (WHYNOUSLPL), NOUSLYJOB indicates whether, in addition to the main reason they reported for why they have no usual source of care (WHYNOUSLPL), they also have no usual source of care because of reasons related to their job. NOUSLYJOB is collected as part of the Access to Care supplement, which gathers information on usual source of care for all family members, characteristics of usual source of care health providers, and barriers family members have faced in obtaining needed health care.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>Not in universe</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>No</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Yes</labl>
+      </catgry>
+      <catgry>
+        <catValu>7</catValu>
+        <labl>Unknown - refused</labl>
+      </catgry>
+      <catgry>
+        <catValu>8</catValu>
+        <labl>Unknown - not ascertained</labl>
+      </catgry>
+      <catgry>
+        <catValu>9</catValu>
+        <labl>Unknown - don't know</labl>
+      </catgry>
+      <concept vocab="IPUMS">Access to Care Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="NOUSLYNOINS" dcml="0" files="ExtractData" intrvl="discrete" name="NOUSLYNOINS">
+      <location EndPos="15" StartPos="15" width="1"/>
+      <labl>Why no usual source of care: No health insurance</labl>
+      <txt><![CDATA[For current RU members in rounds 2 and 4 without a usual source of care (USUALPL) and who provided a main reason for not having a usual place of care (WHYNOUSLPL), NOUSLYNOINS indicates whether, in addition to the main reason they reported for why they have no usual source of care (WHYNOUSLPL), they also have no usual source of care because they do not have health insurance. NOUSLYNOINS is collected as part of the Access to Care supplement, which gathers information on usual source of care for all family members, characteristics of usual source of care health providers, and barriers family members have faced in obtaining needed health care.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>Not in universe</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>No</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Yes</labl>
+      </catgry>
+      <catgry>
+        <catValu>7</catValu>
+        <labl>Unknown - refused</labl>
+      </catgry>
+      <catgry>
+        <catValu>8</catValu>
+        <labl>Unknown - not ascertained</labl>
+      </catgry>
+      <catgry>
+        <catValu>9</catValu>
+        <labl>Unknown - don't know</labl>
+      </catgry>
+      <concept vocab="IPUMS">Access to Care Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="EXPTOT" dcml="0" files="ExtractData" intrvl="contin" name="EXPTOT">
+      <location EndPos="22" StartPos="16" width="7"/>
+      <labl>Annual total of direct health care payments</labl>
+      <txt><![CDATA[For all persons, EXPTOT captures the sum of direct payments for care provided during the year, including out-of-pocket payments and payments by private insurance, Medicaid, Medicare, and other sources. Payments for over-the-counter drugs and indirect payments not related to specific medical events, such as Medicaid Disproportionate Share and Medicare Direct Medical Education subsidies, are not included in this amount. For more information on how MEPS collects expenditure data, please refer to our user note on medical expenditures.
+
+Related variables 
+Variables related to total annual health care expenditures by source of payment, total annual health care expenditures by type of medical service, and total annual health care charges are also available. Please refer to our user note on expenditures for a list of these variables.]]></txt>
+      <codInstr><![CDATA[CodesEXPTOT is a 6-digit numeric variable.]]></codInstr>
+      <concept vocab="IPUMS">Total Expenditures Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="EXPSELFPAY" dcml="0" files="ExtractData" intrvl="contin" name="EXPSELFPAY">
+      <location EndPos="28" StartPos="23" width="6"/>
+      <labl>Annual total of direct health care payments made by self/family</labl>
+      <txt><![CDATA[For all persons, EXPSELFPAY captures the sum of direct payments made by the person and the person's family for care provided during the year. Payments for over-the-counter drugs and indirect payments not related to specific medical events, such as Medicaid Disproportionate Share and Medicare Direct Medical Education subsidies, are not included in this amount. For more information on how MEPS collects expenditure data, please refer to our user note on medical expenditures.
+
+Related variables 
+Variables related to total annual health care expenditures by source of payment, total annual health care expenditures by type of medical service, and total annual health care charges are also available. Please refer to our user note on expenditures for a list of these variables.]]></txt>
+      <codInstr><![CDATA[CodesEXPSELFPAY is a 6-digit numeric variable.]]></codInstr>
+      <concept vocab="IPUMS">Total Expenditures Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="CHGTOT" dcml="0" files="ExtractData" intrvl="contin" name="CHGTOT">
+      <location EndPos="35" StartPos="29" width="7"/>
+      <labl>Annual total of charges for health care</labl>
+      <txt><![CDATA[For all persons, CHGTOT captures the sum of fully established charges for care received during the year, excluding those for prescribed medicines. This variable does not usually reflect actual payments made for services, which can be substantially lower due to factors such as negotiated discounts, bad debt, and free care. For more information on how MEPS collects expenditure and charge data, please refer to our user note on medical expenditures.
+
+Related variables 
+Variables related to total annual health care charges by source of payment, total annual health care charges by type of medical service, and analogous information for health care expenditures are also available. Please refer to our user note on medical expenditures for a list of these variables.]]></txt>
+      <codInstr><![CDATA[CodesCHGTOT is a 6-digit numeric variable.]]></codInstr>
+      <concept vocab="IPUMS">Total Expenditures Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+  </dataDscr>
+</codeBook>
