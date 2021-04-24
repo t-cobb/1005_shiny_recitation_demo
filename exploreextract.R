@@ -159,6 +159,8 @@ access_clean <- costs_clean %>%
 # run these models on the full data 
 # based on the access variables, what can we learn about potential health care costs and expenditures? 
 
+# select 2 fits, save the output as RDS
+
 x <- access_clean %>%
   filter(total > 0) %>%
   slice_sample(n = 50000)
@@ -168,6 +170,11 @@ fit_2 <- stan_glm(x,
                    refresh = 0,
                    family = gaussian,
                    seed = 254)
+
+# saveRDS(fit_2, file = "fit_2.rds")
+# this is the line to save the output of my fit. Then I move it to clean_data folder 
+# within my app, I call readRDS("(foldername)/fit_2.RDS") assign to an object
+# don't put rstanarm in the app or the app won't publish 
 
 fit_3 <- stan_glm(x,
                  formula = log(total) ~ language + noinsurance + self_pay + self_pay*jobrelated,
